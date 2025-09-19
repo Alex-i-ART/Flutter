@@ -1,122 +1,185 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Лабораторная работа'),
+        ),
+        body: MyHomePage(),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+    return SingleChildScrollView(
+      padding: EdgeInsets.all(16.0),
+      child: Center(
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+          children: [
+            // Текстовые виджеты в Column
+            Column(
+              children: [
+                Text('ФИО: Перфильев Александр Леонидович', style: TextStyle(fontSize: 20)),
+                Text('Год рождения: 2004', style: TextStyle(fontSize: 20)),
+                Text('Группа: ИСТУ-22-2', style: TextStyle(fontSize: 20)),
+                SizedBox(height: 20), 
+              ],
+            ),
+
+            // Виджеты Row с иконками
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Icon(Icons.star, size: 30, color: Colors.amber),
+                    Icon(Icons.favorite, size: 30, color: Colors.red),
+                    Icon(Icons.home, size: 30, color: Colors.blue),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(Icons.email, size: 30, color: Colors.green),
+                    Icon(Icons.phone, size: 30, color: Colors.purple),
+                    Icon(Icons.person, size: 30, color: Colors.orange),
+                  ],
+                ),
+                SizedBox(height: 20), 
+              ],
+            ),
+            
+            // Виджет Stack с контейнерами
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(color: Colors.red, width: 200, height: 200),
+                Container(color: Colors.green, width: 150, height: 150),
+                Container(color: Colors.blue, width: 100, height: 100),
+                Text('Stack Example', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ],
+            ),
+            SizedBox(height: 20),
+
+            // НОВЫЙ Stack с контейнерами по углам
+            Container(
+              height: 300, // Высота для Stack
+              child: Stack(
+                children: [
+                  // Левый верхний угол
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Container(
+                      width: 80,
+                      height: 80,
+                      color: Colors.red,
+                      child: Center(child: Text('ЛВ', style: TextStyle(color: Colors.white))),
+                    ),
+                  ),
+                  
+                  // Правый верхний угол
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Container(
+                      width: 100,
+                      height: 70,
+                      color: Colors.blue,
+                      child: Center(child: Text('ПВ', style: TextStyle(color: Colors.white))),
+                    ),
+                  ),
+                  
+                  // Левый нижний угол
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    child: Container(
+                      width: 90,
+                      height: 90,
+                      color: Colors.green,
+                      child: Center(child: Text('ЛН', style: TextStyle(color: Colors.white))),
+                    ),
+                  ),
+                  
+                  // Правый нижний угол
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      width: 70,
+                      height: 100,
+                      color: Colors.orange,
+                      child: Center(child: Text('ПН', style: TextStyle(color: Colors.white))),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20), 
+
+            // Текстовые виджеты в Wrap
+            Wrap(
+              spacing: 8.0,
+              runSpacing: 8.0,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(8.0),
+                  color: Colors.amber,
+                  child: Text('ФИО: Перфиьев Александр Леоинидович'),
+                ),
+                Container(
+                  padding: EdgeInsets.all(8.0),
+                  color: Colors.lightBlue,
+                  child: Text('Год рождения: 2004'),
+                ),
+                Container(
+                  padding: EdgeInsets.all(8.0),
+                  color: Colors.lightGreen,
+                  child: Text('Группа: ИСТУ-22-2'),
+                ),
+                Container(
+                  padding: EdgeInsets.all(8.0),
+                  color: Colors.pinkAccent,
+                  child: Text('Специальность: Программист'),
+                ),
+                Container(
+                  padding: EdgeInsets.all(8.0),
+                  color: Colors.deepPurpleAccent,
+                  child: Text('Курс: 4'),
+                ),
+              ],
+            ),
+
+            // Original Wrap с цветными контейнерами
+            SizedBox(height: 20),
+            Wrap(
+              spacing: 8.0,
+              runSpacing: 8.0,
+              children: List.generate(6, (index) {
+                return Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.primaries[index % Colors.primaries.length],
+                  child: Center(child: Text('Container $index', style: TextStyle(color: Colors.white))),
+                );
+              }),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
