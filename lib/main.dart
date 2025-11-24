@@ -5,6 +5,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +21,8 @@ class MyApp extends StatelessWidget {
 }
 
 class GravityCalculatorFirstScreen extends StatefulWidget {
+  const GravityCalculatorFirstScreen({super.key});
+
   @override
   _GravityCalculatorFirstScreenState createState() => _GravityCalculatorFirstScreenState();
 }
@@ -40,7 +44,7 @@ class _GravityCalculatorFirstScreenState extends State<GravityCalculatorFirstScr
       ),
       body: Form(
         key: _formKey,
-        child: ListView( 
+        child: ListView(
           padding: const EdgeInsets.all(16.0),
           children: [
             // Поле ввода массы
@@ -141,12 +145,14 @@ class _GravityCalculatorFirstScreenState extends State<GravityCalculatorFirstScr
             Center(
               child: ElevatedButton(
                 onPressed: _calculateGravity,
-                child: Text('Рассчитать ускорение свободного падения'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                 ),
+                child: Text('Рассчитать ускорение свободного падения'),
               ),
             ),
+            
+            // Добавляем отступ внизу для удобства скролла
             SizedBox(height: 100),
           ],
         ),
@@ -207,7 +213,7 @@ class GravityResultScreen extends StatelessWidget {
   final double radius;
   static const double G = 6.67430e-11;
 
-  GravityResultScreen({
+  const GravityResultScreen({super.key, 
     required this.mass,
     required this.radius,
   });
@@ -250,7 +256,7 @@ class GravityResultScreen extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: ListView( 
+      body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
           // Результат расчета
@@ -322,6 +328,9 @@ class GravityResultScreen extends StatelessWidget {
               ]),
             ],
           ),
+          
+          // Большой отступ внизу для удобства скролла
+          SizedBox(height: 100),
         ],
       ),
     );
