@@ -11,6 +11,12 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
+/web
+/macos
+/linux/android
+/ios
+/.vscode
+
 
 # IntelliJ related
 *.iml
