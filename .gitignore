@@ -1,4 +1,4 @@
-# Miscellaneous
+# Miscellaneous import 'package:flutter_application/database/db_provider.dart'; // ✅ Абсолютный путь
 *.class
 *.log
 *.pyc
